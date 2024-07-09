@@ -9,13 +9,17 @@ require "nvim-treesitter.query_predicates"
 
 local M = {}
 
----@param opts? TSConfig # Optional config to pass to `configs.setup`. (If omitted or `nil`, `configs.setup` will not be called.)
+--- opts: Optional config to pass to `configs.setup`.
+--- (If omitted or `nil`, `configs.setup` will not be called.)
+---@param opts? TSConfig
 function M.setup(opts)
   utils.setup_commands("install", install.commands)
   utils.setup_commands("info", info.commands)
   utils.setup_commands("configs", configs.commands)
   configs.init()
-  if opts then configs.setup(opts) end
+  if opts then
+    configs.setup(opts)
+  end
 end
 
 M.define_modules = configs.define_modules
